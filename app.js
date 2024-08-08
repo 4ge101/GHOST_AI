@@ -22,19 +22,19 @@ recognition.onresult = function (event) {
     transcript = transcript.toLowerCase();
     console.log(`my words:${transcript}`);
 
-    if (transcript.includes("hello ghost")) {
+    if (transcript.includes("hello ghost") || transcript.includes("hey ghost") || transcript.includes("hi ghost")) {
         readOut("hello sir")
     }
 
-    if (transcript.includes("open youtube")) {
+    if (transcript.includes("open youtube") || transcript.includes("open you tube")) {
         readOut("opening youtube sami");
         window.open("https://www.youtube.com/");
     }
-    if (transcript.includes("open google")) {
+    if (transcript.includes("open google") || transcript.includes("open Google")) {
         readOut("opening google sami");
         window.open("https://www.google.com/");
     }
-    if (transcript.includes("open github")){
+    if (transcript.includes("open github") || transcript.includes("open git hub")) {
         readOut("opening github sami");
         window.open("https://github.com/");
     }
