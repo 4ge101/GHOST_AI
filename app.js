@@ -20,11 +20,23 @@ recognition.onresult = function (event) {
     let current = event.resultIndex;
     let transcript = event.results[current][0].transcript;
     transcript = transcript.toLowerCase();
-    console.log(transcript)
+    console.log(`my words:${transcript}`);
 
-    if(transcript.includes("hello ghost")){
-     readOut("hello sir")
-     console.log("hello sir")
+    if (transcript.includes("hello ghost")) {
+        readOut("hello sir")
+    }
+
+    if (transcript.includes("open youtube")) {
+        readOut("opening youtube sami");
+        window.open("https://www.youtube.com/");
+    }
+    if (transcript.includes("open google")) {
+        readOut("opening google sami");
+        window.open("https://www.google.com/");
+    }
+    if (transcript.includes("open github")){
+        readOut("opening github sami");
+        window.open("https://github.com/");
     }
 };
 
@@ -52,7 +64,7 @@ function readOut(message) {
     // different voices
     // const allVoices = speechSynthesis.getVoices();
     speech.text = message;
-    // speech.voice = allVoices[36];
+    // speech.voice = allVoices[0];
     speech.volume = 1;
     window.speechSynthesis.speak(speech);
     console.log("speaking out");
