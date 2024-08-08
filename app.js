@@ -15,6 +15,19 @@ recognition.onstart = function () {
     console.log("vr active");
 };
 
+//sr result
+recognition.onresult = function (event) {
+    let current = event.resultIndex;
+    let transcript = event.results[current][0].transcript;
+    transcript = transcript.toLowerCase();
+    console.log(transcript)
+
+    if(transcript.includes("hello ghost")){
+     readOut("hello sir")
+     console.log("hello sir")
+    }
+};
+
 // SPEECH RECONGNTION STOP
 
 recognition.onend = function () {
@@ -22,7 +35,7 @@ recognition.onend = function () {
 };
 
 // SPEECH RECONGNTION CONTINOUS
-recognition.continuous = true;
+// recognition.continuous = true;
 
 startBtn.addEventListener("click", () => {
     recognition.start();
@@ -37,8 +50,9 @@ stopBtn.addEventListener("click", () => {
 function readOut(message) {
     const speech = new SpeechSynthesisUtterance();
     // different voices
-    const allVoices = speechSynthesis.getVoices();
+    // const allVoices = speechSynthesis.getVoices();
     speech.text = message;
+    // speech.voice = allVoices[36];
     speech.volume = 1;
     window.speechSynthesis.speak(speech);
     console.log("speaking out");
@@ -47,5 +61,6 @@ function readOut(message) {
 // example
 
 speakBtn.addEventListener("click", () => {
-    readOut("hi, my friend my name is md sami ali what is your name?");
+    readOut("hello,my dear enthusiatsic devs on the planett");
 });
+
