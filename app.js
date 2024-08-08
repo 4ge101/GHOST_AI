@@ -1,16 +1,51 @@
-const btn = document.querySelector('.talk')
-const content = document.querySelector('.content')
+// ELEMENTS
+const startBtn = document.querySelector("#start");
+const stopBtn = document.querySelector("#stop");
+const speakBtn = document.querySelector("#speak");
 
-function speak(text) {
-    const text_speak = new SpeechSynthesisUtterance(text);
+// SPEECH RECONGNTION SETUP
 
-    text_speak.rate = 1;
-    text_speak.volume = 1;
-    text_speak.pitch = 1;
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    window.speechSynthesis.speak(text_speak);
+const recognition = new SpeechRecognition();
+
+// SPEECH RECONGNTION START
+
+recognition.onstart = function () {
+    console.log("vr active");
+};
+
+// SPEECH RECONGNTION STOP
+
+recognition.onend = function () {
+    console.log("vr deactive");
+};
+
+// SPEECH RECONGNTION CONTINOUS
+recognition.continuous = true;
+
+startBtn.addEventListener("click", () => {
+    recognition.start();
+});
+
+stopBtn.addEventListener("click", () => {
+    recognition.stop();
+});
+
+
+// GHOST SPEECH
+function readOut(message) {
+    const speech = new SpeechSynthesisUtterance();
+    // different voices
+    const allVoices = speechSynthesis.getVoices();
+    speech.text = message;
+    speech.volume = 1;
+    window.speechSynthesis.speak(speech);
+    console.log("speaking out");
 }
 
-window.addEventListener('load', () => {
-    speak("Initializing GHOST..");
+// example
+
+speakBtn.addEventListener("click", () => {
+    readOut("hi, my friend my name is md sami ali what is your name?");
 });
