@@ -23,19 +23,31 @@ recognition.onresult = function (event) {
     console.log(`my words:${transcript}`);
 
     if (transcript.includes("hello ghost") || transcript.includes("hey ghost") || transcript.includes("hi ghost")) {
-        readOut("hello sir")
+        readOut("hello sami sir")
     }
 
     if (transcript.includes("open youtube") || transcript.includes("open you tube")) {
-        readOut("opening youtube sami");
+        readOut("opening youtube sir");
         window.open("https://www.youtube.com/");
     }
     if (transcript.includes("open google") || transcript.includes("open Google")) {
-        readOut("opening google sami");
+        readOut("opening google sir");
         window.open("https://www.google.com/");
     }
+
+    //google search
+    if (transcript.includes("search for")) {
+        readOut("here's the result");
+    
+        let input = transcript.slice(11);
+        input = input.trim().split(" ").join("+");
+    
+        console.log(input);
+        window.open(`https://www.google.com/search?q=${input}`);
+    }
+
     if (transcript.includes("open github") || transcript.includes("open git hub")) {
-        readOut("opening github sami");
+        readOut("opening github sir");
         window.open("https://github.com/");
     }
 };
